@@ -28,8 +28,8 @@ window.onload = function() {
         {
           label: "Total chapters read",
           data: [brotherTotal, sisterTotal],
-          backgroundColor: ["#37A2EB", "rgb(244, 99, 132)"],
-          borderColor: ["#37A2EB", "rgb(255, 99, 132)"],
+          backgroundColor: ["#37A2EB", "#FF3363"],
+          borderColor: ["#37A2EB", "#FF3363"],
           borderWidth: 1
         }
       ]
@@ -46,8 +46,16 @@ window.onload = function() {
           }
         ]
       },
+      legend: {
+        display: false
+      },
       layout: {
-        paddding: 50
+        padding: {
+          top: 20,
+          bottom: 50,
+          left: 50,
+          right: 50
+        }
       }
     }
   });
