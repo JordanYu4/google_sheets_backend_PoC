@@ -10,22 +10,14 @@ async function getStats () {
   console.log(stats);
   brotherTotal = stats.data[0].brothers;
   sisterTotal = stats.data[0].sisters;
-
-    // .then((response) => {
-    //   console.log(response);
-    //   brotherTotal = response.data[0].brothers
-    //   sisterTotal = response.data[0].sisters
-    // });
+  console.log(brotherTotal, sisterTotal);
+  return;
 }
 
-async function renderChart () {
+window.onload = function() {
   const ctx = document.getElementById("myChart").getContext("2d");
-  
-  await getStats();
-  console.log('brothers', brotherTotal);
-  console.log('sisters', sisterTotal);
 
-  const chart = new Chart(ctx, {
+  const readingChart = new Chart(ctx, {
     // The type of chart we want to create
     type: "bar",
 
@@ -34,7 +26,7 @@ async function renderChart () {
       labels: ["Brothers", "Sisters"],
       datasets: [
         {
-          label: "Bible reading progress",
+          label: "Total chapters read",
           data: [brotherTotal, sisterTotal],
           backgroundColor: ["#37A2EB", "rgb(244, 99, 132)"],
           borderColor: ["#37A2EB", "rgb(255, 99, 132)"],
@@ -55,15 +47,16 @@ async function renderChart () {
         ]
       },
       layout: {
-        paddding: 0
+        paddding: 50
       }
     }
   });
 
-  return chart;
-}
-
-window.onload = function() {
+  async function updateChart() {
+    await getStats();
+    readingChart.data.datasets[0].data = [brotherTotal, sisterTotal];
+    readingChart.update();
+  }
   
-  renderChart();
+  updateChart();
 }
