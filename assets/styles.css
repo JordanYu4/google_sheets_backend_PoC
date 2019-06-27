@@ -1,6 +1,17 @@
+html, body {
+  font-family: 'Avenir', sans-serif;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+
 .chart-container {
   position: relative;
-  height: 400px;
+  height: 40vh;
   width: 80vw;
   margin: auto;
 }
